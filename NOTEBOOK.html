@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+        处理github上传时拒绝合并无关联数据方法,
+        git pull 远程仓库的地址 master --allow-unrelated-histories
+
+        不上传模块文件夹
+        在gitbash中用touch .gitignore
+        在文件.gitignore用utf-8中填写  /node_modules/  
+
+        批量处理后缀名文件
+            ren [path]旧文件名.旧文件后缀名 新文件名.新文件后缀名
+            或者    - 地址中输入cmd     - 使用cmd命令：rename *.html *.ejs
+            
+        ejs的纯结构抽离
+        <%- include(路径)%>
+        例子<%- include('./layouts/admin_aside.ejs'); %>
+
+        module.exports.getIndexPage = (req,res) =>{
+            res.render('index.ejs')
+        }
+
+        router.get('.admin',controller.getAdmin).get('/',controller.getIndex)
+        controller.getAdmin(req,res){
+            res.render();
+        }
+        controller.getIndex(req,res){
+            res.render()
+        }
+
+        抽离公共部分
+            利用ejs,    
+        后台业务处理
+        前端业务处理
+    </pre>
+
+</body>
+
+</html>
