@@ -29,6 +29,7 @@ router.use('/assets', express.static('assets'))            //托管静态资源�
     .get('/settings.html', adminController.getAdminSettings)
     .get('/slides.html', adminController.getAdminSlides)
     .get('/users.html', adminController.getAdminUsers)
+    .post('/checkLogin', adminController.checkLogin)
 
 
 module.exports = router;

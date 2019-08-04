@@ -16,20 +16,24 @@
         不上传模块文件夹
         在gitbash中用touch .gitignore
         在文件.gitignore用utf-8中填写  /node_modules/  
+        克隆别人的项目没有模块时需要自行下载,用
+            npm install      即可
 
         批量处理后缀名文件
             ren [path]旧文件名.旧文件后缀名 新文件名.新文件后缀名
             或者    - 地址中输入cmd     - 使用cmd命令：rename *.html *.ejs
             
-        ejs的纯结构抽离
-        <%- include(路径)%>
-        例子<%- include('./layouts/admin_aside.ejs'); %>
+        抽离公共部分
+            利用ejs的纯结构抽离
+            <%- include(路径)%>
+            例子<%- include('./layouts/admin_aside.ejs'); %>
 
         module.exports.getIndexPage = (req,res) =>{
             res.render('index.ejs')
         }
 
-        router.get('.admin',controller.getAdmin).get('/',controller.getIndex)
+        路由监听的链式编程:
+        router.use('/uploads',express.static('uploads')).get('.admin',controller.getAdmin).get('/',controller.getIndex)
         controller.getAdmin(req,res){
             res.render();
         }
@@ -37,10 +41,6 @@
             res.render()
         }
 
-        抽离公共部分
-            利用ejs,    
-        后台业务处理
-        前端业务处理
     </pre>
 
 </body>
