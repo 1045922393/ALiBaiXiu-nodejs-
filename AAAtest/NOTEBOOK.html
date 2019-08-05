@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+        2019/8/4
+        处理github上传时拒绝合并无关联数据方法,
+        git pull 远程仓库的地址 master --allow-unrelated-histories
+
+        不上传模块文件夹
+        在gitbash中用touch .gitignore
+        在文件.gitignore用utf-8中填写  /node_modules/  
+        克隆别人的项目没有模块时需要自行下载,用
+            npm install      即可
+
+        批量处理后缀名文件
+            ren [path]旧文件名.旧文件后缀名 新文件名.新文件后缀名
+            或者    - 地址中输入cmd     - 使用cmd命令：rename *.html *.ejs
+            
+        抽离公共部分
+            利用ejs的纯结构抽离
+            <%- include(路径)%>
+            例子<%- include('./layouts/admin_aside.ejs'); %>
+
+        module.exports.getIndexPage = (req,res) =>{
+            res.render('index.ejs')
+        }
+
+        路由监听的链式编程:
+        router.use('/uploads',express.static('uploads')).get('.admin',controller.getAdmin).get('/',controller.getIndex)
+        controller.getAdmin(req,res){
+            res.render();
+        }
+        controller.getIndex(req,res){
+            res.render()
+        }
+
+        2019/8/5
+        今天目标:
+            cookies
+            导航守卫
+
+        express模块的API
+            res.json()  //将JSON对象转换为JSON字符串并返回浏览器
+        [   res.set({name:value,name:value})  和 res.setHead()  ]  与 [ res.send()  和 res.end() ]  一起使用
+            而NODEJS的  res.writeHead() 则与    res.end()   搭配使用
+
+        body-parser模块的API
+            中间件设置请求以JSON方式传来的数据转为JSON对象并存在req.body中        app.use(bodyParser.json())
+            中间件设置请求以POST方式传来的数据转为对象并存在req.body中          app.use(bodyParse.urlencoded({extended:false}))
+            
+
+
+        nodeJs的API
+            res.setHeader(name,value)           //name--string,value--any
+            例子    res.setHeader('Content-Type', 'text/html')      res.setHeader('set-cookie','isLogin=true')
+
+            res.writeHead(3位状态码,以对象形式的响应头)     该方法在消息中只能被调用一次，且必须在 response.end() 被调用之前调用。当使用 response.setHeader() 设置响应头时，则与传给 response.writeHead() 的任何响应头合并，且 response.writeHead() 的优先。
+            例子    res.writeHead(200,{'Content-Type':'text/html','set-cookie':'isLogin=true','Location':'/admin/login'})   
+                //'Location':'/admin/login'     用于服务器控制浏览器跳转页面
+
+            
+
+            读取cookie
+                req.headers.cookie
+
+        session
+            使用方式(req.session得到的是一个对象)
+            下载    npm i -s express-session
+            引用中间件  let session = require('express-session')
+                        app.use(req.session({
+                            secret:'keyboard cat',      //密钥
+                            resave:false,       //强制保存
+                            saveUninitialized:false     //初始化保存
+                        }));
+            写入session
+            req.session.isLogin = 'true'
+
+        导航守卫    -判断当前页面能否跳转
+            利用中间件的特性app.use()   当没有路由每次应用程序收到请求执行
+            qpp.use(function(req,res,next){
+                if(req.session.isLogin&&req.session.isLogin=='true'){
+                    next();  //执行代码
+                }else{
+                    req.redirect('/admin/login')    //重定向跳转页面
+                }
+            })
+    </pre>
+
+</body>
+
+</html>
