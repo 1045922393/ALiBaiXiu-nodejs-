@@ -9,27 +9,26 @@ const router = express.Router();
 // router.get('/list.html', userController.getList)                    //处理监听
 // router.get('/detail.html', userController.getDetail)                    //处理监听
 
-
 router.use('/assets', express.static('assets'))            //托管静态资源管理
     .use('/uploads', express.static('uploads'))
     .get('/', userController.getIndex)                    //处理监听
+    .get('/index.html', userController.getIndex)                    //处理监听
     // .get('/index.html', userController.getIndex)                    //处理监听
     .get('/list.html', userController.getList)                    //处理监听
     .get('/detail.html', userController.getDetail)                    //处理监听
     // .get('/admin/index.html', adminController.getAdminIndex)
-    .get('/index.html/', adminController.getAdminIndex)
-    .get('/categories.html', adminController.getAdminCategories)
-    .get('/comments.html', adminController.getAdminComments)
-    .get('/login.html', adminController.getAdminLogin)
-    .get('/nav-menus.html', adminController.getAdminNavMenus)
-    .get('/password-reset.html', adminController.getAdminPasswordReset)
-    .get('/post-add.html', adminController.getAdminPostAdd)
-    .get('/posts.html', adminController.getAdminPosts)
-    .get('/profile.html', adminController.getAdminProfile)
-    .get('/settings.html', adminController.getAdminSettings)
-    .get('/slides.html', adminController.getAdminSlides)
-    .get('/users.html', adminController.getAdminUsers)
+    .get('/admin/index.html/', adminController.getAdminIndex)
+    .get('/admin/categories.html', adminController.getAdminCategories)
+    .get('/admin/comments.html', adminController.getAdminComments)
+    .get('/admin/login.html', adminController.getAdminLogin)
+    .get('/admin/nav-menus.html', adminController.getAdminNavMenus)
+    .get('/admin/password-reset.html', adminController.getAdminPasswordReset)
+    .get('/admin/post-add.html', adminController.getAdminPostAdd)
+    .get('/admin/posts.html', adminController.getAdminPosts)
+    .get('/admin/profile.html', adminController.getAdminProfile)
+    .get('/admin/settings.html', adminController.getAdminSettings)
+    .get('/admin/slides.html', adminController.getAdminSlides)
+    .get('/admin/users.html', adminController.getAdminUsers)
     .post('/checkLogin', adminController.checkLogin)
-
 
 module.exports = router;

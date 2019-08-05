@@ -10,14 +10,15 @@ server.get('/', function (req, res) {
         res.send('第二次')
 
     } else {
-        res.setHeader(               //res.set('name','value)    如果多个    res.set({'name':'value','name':'value'})
-            'Content-Type', 'text/html;charset=utf-8'
-            // 'Set-Cookie': 'isLogin=true'
-        );
-        res.setHeader(               //res.set('name','value)    如果多个    res.set({'name':'value','name':'value'})
+        // res.setHeader(               //res.set('name','value)    如果多个    res.set({'name':'value','name':'value'})
+        //     'Content-Type', 'text/html;charset=utf-8'
+        //     // 'Set-Cookie': 'isLogin=true'
+        // );
+        res.writeHead(200,               //res.set('name','value)    如果多个    res.set({'name':'value','name':'value'})
             // 'Content-Type', 'text/html;charset=utf-8'
             'Set-Cookie', 'isLogin=true'
         );
+
         // res.send('<htm>哈啊哈哈</htm>')
         res.end('第一次');
     }

@@ -13,12 +13,12 @@ let connect = mysql.createConnection({
 // })
 // connect.connect();
 module.exports = {
-    checkLogin(callback) {
-        let sql = `select * from users`;
+    checkLogin(dataEmail, callback) {
+        let sql = `select * from users where email = '${dataEmail}'`;
         connect.query(sql, (err, result, filed) => {
             if (err) console.log(err);
             // console.log(result);
-            callback(result);
+            callback(result[0]);
         })
     }
 }

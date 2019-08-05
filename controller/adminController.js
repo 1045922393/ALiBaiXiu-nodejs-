@@ -1,4 +1,5 @@
 const model = require('../model')
+// const session = require('express-session');
 module.exports = {
     getAdminIndex(req, res) {
         res.render('admin/index');
@@ -37,19 +38,19 @@ module.exports = {
         res.render('admin/users');
     },
     checkLogin(req, res) {
-        model.checkLogin((resultArr) => {
-            let obj = resultArr.find(function (item) {
-                return item.email == req.body.email;
-            })
-            if (!obj) {
+        model.checkLogin(req.body.email, (resultObj) => {
+            // console.log(resultObj.password)
+            if (!resultObj) {
                 res.send({ code: '404', msg: '用户名不存在' })
             } else {
-                if (obj.password != req.body.password) {
-                    res.send({ code: '405', msg: '密码错误' })
+                if (resultObj.password != req.body.password) {
+                    res.send({ code: '404', msg: '密码错误' })
                 } else {
-                    res.send({ code: '200', msg: '登陆成功,点击确认进入管理员页面', id: obj.id })
+                    req.session.isLogin = 'true'
+                    res.send({ code: '200', msg: '登陆成功,点击确认进入管理员页面', id: resultObj.id })
                 }
             }
         })
     }
+
 }
