@@ -14,6 +14,14 @@ module.exports = {
                 }
             }
         })
+    },
+    getAllArticle(req, res) {
+        // console.log(req.query)
+        model.getAllArticle(req.query, (err, result) => {
+            if (err) {
+                res.send({ code: 404, msg: '查询错误' })
+            }
+            res.send(result);
+        })
     }
-
 }
